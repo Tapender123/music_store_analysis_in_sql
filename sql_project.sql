@@ -50,7 +50,7 @@ ORDER BY total DESC
 LIMIT 1;
 
 --Q. Write query to return the email, first name, last name and genre of all 
--- Rock music listners. Return your list ordered aphabatically by email starting
+-- Rock music listeners. Return your list in alphabetical order by email starting
 --with A
 
 --check schema png file 
@@ -58,20 +58,7 @@ select * from invoice
 select * from invoice_line
 select * from track
 select * from customer
---- without genre name
-SELECT DISTINCT email, first_name, last_name
-FROM customer
-JOIN invoice ON customer.customer_id =	invoice.customer_id
-JOIN invoice_line ON invoice.invoice_id = invoice_line.invoice_id
-WHERE track_id IN(
-SELECT track_id 
-FROM track
-JOIN genre ON track.genre_id = genre.genre_id
-WHERE genre.name LIKE 'Rock'
-ORDER BY email ASC
-);
----with genre name
-
+	
 SELECT DISTINCT email, first_name, last_name, genre.name AS genre_name
 FROM customer
 JOIN invoice ON customer.customer_id = invoice.customer_id
@@ -115,7 +102,7 @@ WHERE milliseconds >(
 				ORDER BY milliseconds DESC;
 
 
---Q1Find how much amount spent by each customer on artists? write a query to return
+--Q Find how much amount spent by each customer on artists? write a query to return
 --customer name, artist name and total spent 
 
 --check schema 
@@ -147,7 +134,7 @@ JOIN best_selling_artist bsa ON bsa.artist_id = alb.artist_id
 GROUP BY 1,2,3,4
 ORDER BY 5 DESC;
 
---we want to find out the most popular music genre for each country. We determine
+--Q.we want to find out the most popular music genre for each country. We determine
 -- the most popular genre as the genre with the highest amount of purchases. Write
 --a query that returns each country along with the top genre. For countries where
 -- the maximum number of purchases is shared return all genres.
@@ -172,7 +159,7 @@ GROUP BY 2,3,4
 ORDER BY 2 ASC, 1 DESC)
 SELECT * FROM popular_genre WHERE RowNo <=1
 
--- write a query that determines the customer that has spent the most on music for 
+--Q write a query that determines the customer that has spent the most on music for 
 --every country. Write a query that returns the country along with the top
 -- customers and how much they spent. For countries where top amount spent is 
 --shared, provide all customers who spent this amount
